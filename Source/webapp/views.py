@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from webapp.models import ToDoList
 
@@ -17,11 +17,10 @@ def todolist_detail(request, *args, **kwargs):
     return render(request, "detail.html", {"todolist": todolist})
 
 
-def todolist_delete(request):
-    todo_id = request.GET.get('id')
-    todolist = ToDoList.objects.get(id=todo_id)
+def todolist_delete(request, pk):
+    todolist = get_object_or_404(ToDoList, id=pk)
     todolist.delete()
-    redirect('todolist', id=todolist.pk)
+    return redirect('todolist')
 
 
 def todolist_create(request):
@@ -36,4 +35,4 @@ def todolist_create(request):
             created_at=request.POST.get('created_at'),
             updated_at=request.POST.get('update_at')
         )
-        redirect('todolist', id=todolist.pk)
+        return redirect('todolist')
