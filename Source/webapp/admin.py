@@ -4,7 +4,7 @@ from webapp.models import ToDoList
 
 
 class ToDoListAdmin(admin.ModelAdmin):
-    list_display = ['id', 'description', 'status', 'created_at']
+    list_display = ['id', 'description', 'detailed_description', 'status', 'created_at']
     list_display_links = ['id', 'description']
     list_filter = ['status']
     search_fields = ['title', 'description']

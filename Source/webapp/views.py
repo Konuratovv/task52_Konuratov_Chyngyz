@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 
 from webapp.models import ToDoList
 
@@ -12,9 +11,9 @@ def todolist_view(request):
     return render(request, "todolist.html", context)
 
 
-def todolist_detail(request):
-    todolist_id = request.GET.get("id")
-    todolist = ToDoList.objects.get(id=todolist_id)
+def todolist_detail(request, *args, **kwargs):
+    pk = kwargs.get('pk')
+    todolist = ToDoList.objects.get(id=pk)
     return render(request, "detail.html", {"todolist": todolist})
 
 
@@ -22,18 +21,19 @@ def todolist_delete(request):
     todo_id = request.GET.get('id')
     todolist = ToDoList.objects.get(id=todo_id)
     todolist.delete()
-    return HttpResponseRedirect("/")
+    redirect('todolist', id=todolist.pk)
 
 
 def todolist_create(request):
     if request.method == "GET":
         return render(request, "create.html")
     if request.method == 'POST':
-        ToDoList.objects.create(
+        todolist = ToDoList.objects.create(
             description=request.POST.get('description'),
+            detailed_description=request.POST.get('detailed_description'),
             status=request.POST.get('status'),
             time=request.POST.get('time'),
             created_at=request.POST.get('created_at'),
             updated_at=request.POST.get('update_at')
         )
-        return HttpResponseRedirect("/")
+        redirect('todolist', id=todolist.pk)

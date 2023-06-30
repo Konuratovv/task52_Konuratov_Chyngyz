@@ -1,38 +1,33 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
-    <title>Document</title>
-</head>
-<body>
-<form action="" method="POST">
-    {% csrf_token %}
-    <label>
-        <h4>Description:</h4>
-        <textarea name="description" cols="30" rows="10"></textarea>
-    </label>
-    <br/>
-    <label>
-        <h4>Status</h4>
-        <select name="status">
-            <option value="new">Новая</option>
-            <option value="in_progress">В процессе</option>
-            <option value="done">Сделано</option>
-        </select>
-    </label>
-    <br/>
-    <label>
-        <h4>Completion time:</h4>
-        <input type="date" name="time">
-    </label>
-    <br/>
-    <input type="submit" value="Create">
-</form>
-<a href="/">Homepage</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Добавить задачу{% endblock %}
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label>
+            <h4>Description:</h4>
+            <textarea name="description" cols="30" rows="10"></textarea>
+        </label>
+        <br/>
+        <label>
+            <h4>Detailed description:</h4>
+            <textarea name="detailed_description" cols="30" rows="10"></textarea>
+        </label>
+        <br/>
+        <label>
+            <h4>Status</h4>
+            <select name="status">
+                <option value="new">Новая</option>
+                <option value="in_progress">В процессе</option>
+                <option value="done">Сделано</option>
+            </select>
+        </label>
+        <br/>
+        <label>
+            <h4>Completion time:</h4>
+            <input type="date" name="time">
+        </label>
+        <br/>
+        <input type="submit" value="Create">
+    </form>
+    <a href="/">Homepage</a>
+{% endblock %}

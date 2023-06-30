@@ -5,6 +5,7 @@ STATUS_CHOICES = [('new', 'Новая'), ('in_progress', 'В процессе'),
 
 class ToDoList(models.Model):
     description = models.TextField(max_length=2000, null=False, blank=False, verbose_name="Описание")
+    detailed_description = models.TextField(default='', verbose_name='Подробное описание')
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='new', verbose_name='Статус')
     time = models.DateTimeField(default=None, verbose_name="Дата выполнения")
 
