@@ -2,11 +2,12 @@
 {% block title %}{{ todolist.description }}{% endblock %}
 {% block content %}
     <div class="card" style="width: 18rem;">
-  <div class="card-body text-center">
-    <h5 class="card-title">{{ todolist.description }}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">{{ todolist.status }}</h6>
-    <p class="card-text">{{ todolist.time }}</p>
-    <a href="{% url 'delete' %}" class="card-link">Delete</a>
-  </div>
-</div>
+        <div class="card-body text-center">
+            <h5 class="card-title">{{ todolist.description }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{ todolist.status }}</h6>
+            <p class="card-text">{{ todolist.time }}</p>
+            <a href="{% url 'delete' todolist.pk %}" class="card-link">Delete</a>
+            <a href="{% url 'update' todolist.pk %}" class="card-link">Update</a>
+        </div>
+    </div>
 {% endblock %}
