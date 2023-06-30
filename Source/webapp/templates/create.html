@@ -1,33 +1,5 @@
 {% extends "base.html" %}
 {% block title %}Добавить задачу{% endblock %}
 {% block content %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        <label>
-            <h4>Description:</h4>
-            <textarea name="description" cols="30" rows="10"></textarea>
-        </label>
-        <br/>
-        <label>
-            <h4>Detailed description:</h4>
-            <textarea name="detailed_description" cols="30" rows="10"></textarea>
-        </label>
-        <br/>
-        <label>
-            <h4>Status</h4>
-            <select name="status">
-                <option value="new">Новая</option>
-                <option value="in_progress">В процессе</option>
-                <option value="done">Сделано</option>
-            </select>
-        </label>
-        <br/>
-        <label>
-            <h4>Completion time:</h4>
-            <input type="date" name="time">
-        </label>
-        <br/>
-        <input type="submit" value="Create">
-    </form>
-    <a href="/">Homepage</a>
+{% include "partial/todolist_form.html" with button_text="Create"%}
 {% endblock %}
